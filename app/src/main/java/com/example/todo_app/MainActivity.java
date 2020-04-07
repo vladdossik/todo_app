@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import com.baoyz.swipemenulistview.SwipeMenu;
+import com.baoyz.swipemenulistview.SwipeMenuCreator;
+import com.baoyz.swipemenulistview.SwipeMenuItem;
+import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,9 +29,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-    public class MainActivity extends Activity {
-        ListView listview_goals;
-        public ArrayAdapter<String> adapter;
+    public class MainActivity extends AppCompatActivity {
+        SwipeMenuListView listview_goals;
+
         ArrayList<String> goals = new ArrayList();
         final Context context = this;
         @Override
@@ -33,11 +39,44 @@ import java.util.Collections;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
-            listview_goals = findViewById(R.id.listview_goals);
-            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, goals);
+            toolbar.setTitle(getApplicationInfo().name);
+            listview_goals = findViewById(R.id.list_view);
+            ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
             listview_goals.setAdapter(adapter);
-            // присваиваем адаптер списку
+            SwipeMenuCreator creator = new SwipeMenuCreator() {
+                @Override
+                public void create(SwipeMenu menu) {
+                    // create "open" item
+                    SwipeMenuItem openItem = new SwipeMenuItem(
+                            getApplicationContext());
+                    // set item background
+                    openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                            0xCE)));
+                    // set item width
+                    openItem.setWidth(170);
+
+                    // set item title font color
+                    openItem.setIcon(R.drawable.ic_open);
+                    // add to menu
+                    menu.addMenuItem(openItem);
+
+                    // create "delete" item
+                    SwipeMenuItem deleteItem = new SwipeMenuItem(
+                            getApplicationContext());
+                    // set item background
+                    deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                            0x3F, 0x25)));
+                    // set item width
+                    deleteItem.setWidth(170);
+                    // set a icon
+                    deleteItem.setIcon(R.drawable.ic_delete);
+                    // add to menu
+                    menu.addMenuItem(deleteItem);
+                }
+            };
+            listview_goals.setMenuCreator(creator);
             FloatingActionButton fab = findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -57,7 +96,7 @@ import java.util.Collections;
                                                 dialog.cancel();
                                             }
                                             //Вводим текст и отображаем в строке ввода на основном экране:
-                                            adapter.add(String.valueOf(userInput.getText()));
+                                           goals.add(String.valueOf(userInput.getText()));
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -71,14 +110,12 @@ import java.util.Collections;
                 }
             });
         }
-
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
-
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
             // Handle action bar item clicks here. The action bar will
@@ -90,7 +127,6 @@ import java.util.Collections;
             if (id == R.id.action_settings) {
                 return true;
             }
-
             return super.onOptionsItemSelected(item);
         }
     }
