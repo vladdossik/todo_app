@@ -38,11 +38,11 @@ import io.paperdb.Paper;
 
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
-        public static String dbname;
+
         Databasehelper mDatabaseHelper;
+        ArrayAdapter adapter;
         ArrayList<String> goals = new ArrayList();
         final Context context = this;
-        ArrayAdapter adapter;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,12 +53,7 @@ import io.paperdb.Paper;
             mDatabaseHelper = new Databasehelper(this);
             toolbar.setTitle(getApplicationInfo().name);
             listview_goals = findViewById(R.id.list_view);
-            Cursor data = mDatabaseHelper.getData();
-            goals.clear();
-            while(data.moveToNext()) {
-                goals.add(data.getString(1));
-            }
-            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, goals);
+             adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
             listview_goals.setAdapter(adapter);
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
@@ -68,7 +63,7 @@ import io.paperdb.Paper;
                             getApplicationContext());
                     // set item background
                     openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                            0xCE)));
+                           0xCE)));
                     // set item width
                     openItem.setWidth(170);
 
@@ -92,13 +87,14 @@ import io.paperdb.Paper;
 
                 }
             };
-            listview_goals.setMenuCreator(creator);
+            listview_goals.setMenuCreator(creator)  ;
             FloatingActionButton fab = findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     LayoutInflater li = LayoutInflater.from(context);
                     View vview = li.inflate(R.layout.add_goal, null);
+
                     AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(context);
                     mDialogBuilder.setView(vview);
                     final EditText userInput = (EditText) vview.findViewById(R.id.input_text);
@@ -107,11 +103,6 @@ import io.paperdb.Paper;
                             .setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
-                                            if(userInput.getText().toString().equals("") && userInput.getText().toString().equals(" "))
-                                            {
-                                                dialog.cancel();
-                                            }
-
                                            mDatabaseHelper.Add(userInput.getText().toString());
                                             populateListView();
                                         }
@@ -131,7 +122,6 @@ import io.paperdb.Paper;
                 public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                     switch (index) {
                         case 0:
-                            //переход к списку дел
                             Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
                             startActivity(intent);
                             break;
@@ -165,9 +155,9 @@ import io.paperdb.Paper;
         }
         public void populateListView() {
             Cursor data = mDatabaseHelper.getData();
-            while (data.moveToNext()) {
+            goals.clear();
+            while(data.moveToNext()) {
                 goals.add(data.getString(1));
             }
         }
-
     }

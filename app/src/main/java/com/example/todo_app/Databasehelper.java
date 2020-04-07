@@ -6,14 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import static com.example.todo_app.MainActivity.dbname;
 
 public class Databasehelper extends SQLiteOpenHelper {
     private  static final String COL2 = "todo";
     public static final String DB_name="goals";
     public Databasehelper(Context context) {
 
-        super(context, dbname, null, 2);
+        super(context, DB_name, null, 2);
     }
 
     @Override
