@@ -2,8 +2,11 @@
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Person;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -24,14 +27,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
+import io.paperdb.Paper;
 
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
-
+        public static String dbname;
+        Databasehelper mDatabaseHelper;
         ArrayList<String> goals = new ArrayList();
         final Context context = this;
         @Override
@@ -40,7 +48,8 @@ import java.util.Collections;
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-
+            mDatabaseHelper = new Databasehelper(this);
+            Paper.init(context);
             toolbar.setTitle(getApplicationInfo().name);
             listview_goals = findViewById(R.id.list_view);
             ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
@@ -74,7 +83,9 @@ import java.util.Collections;
                     deleteItem.setIcon(R.drawable.ic_delete);
                     // add to menu
                     menu.addMenuItem(deleteItem);
+                    populateListView();
                 }
+
             };
             listview_goals.setMenuCreator(creator);
             FloatingActionButton fab = findViewById(R.id.fab);
@@ -95,8 +106,7 @@ import java.util.Collections;
                                             {
                                                 dialog.cancel();
                                             }
-                                            //Вводим текст и отображаем в строке ввода на основном экране:
-                                           goals.add(String.valueOf(userInput.getText()));
+                                            goals.add(dbname);
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -107,6 +117,22 @@ import java.util.Collections;
                                     });
                     AlertDialog alertDialog = mDialogBuilder.create();
                     alertDialog.show();
+                }
+            });
+            listview_goals.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                    switch (index) {
+                        case 0:
+                            Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
+                            startActivity(intent);
+                            break;
+                        case 1:
+                            // delete
+                            break;
+                    }
+                    // false : close the menu; true : not close the menu
+                    return false;
                 }
             });
         }
@@ -128,5 +154,16 @@ import java.util.Collections;
                 return true;
             }
             return super.onOptionsItemSelected(item);
+        }
+        public void populateListView() {
+            //get the data and append to a list
+            Cursor data = mDatabaseHelper.getData();
+            ArrayList<String> listData = new ArrayList<>();
+            while(data.moveToNext()) {
+                listData.add(data.getPosition() + 1 + data.getString(1) );
+            }
+
+            ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+            listview_goals.setAdapter(adapter);
         }
     }
