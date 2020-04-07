@@ -42,17 +42,23 @@ import io.paperdb.Paper;
         Databasehelper mDatabaseHelper;
         ArrayList<String> goals = new ArrayList();
         final Context context = this;
+        ArrayAdapter adapter;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
-            Paper.init(context);
             toolbar.setTitle(getApplicationInfo().name);
             listview_goals = findViewById(R.id.list_view);
-            ArrayAdapter adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
+            Cursor data = mDatabaseHelper.getData();
+            goals.clear();
+            while(data.moveToNext()) {
+                goals.add(data.getString(1));
+            }
+            adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, goals);
             listview_goals.setAdapter(adapter);
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
@@ -83,9 +89,8 @@ import io.paperdb.Paper;
                     deleteItem.setIcon(R.drawable.ic_delete);
                     // add to menu
                     menu.addMenuItem(deleteItem);
-                    populateListView();
-                }
 
+                }
             };
             listview_goals.setMenuCreator(creator);
             FloatingActionButton fab = findViewById(R.id.fab);
@@ -106,7 +111,9 @@ import io.paperdb.Paper;
                                             {
                                                 dialog.cancel();
                                             }
-                                            goals.add(dbname);
+
+                                           mDatabaseHelper.Add(userInput.getText().toString());
+                                            populateListView();
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -124,11 +131,12 @@ import io.paperdb.Paper;
                 public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
                     switch (index) {
                         case 0:
+                            //переход к списку дел
                             Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
                             startActivity(intent);
                             break;
                         case 1:
-                            // delete
+
                             break;
                     }
                     // false : close the menu; true : not close the menu
@@ -156,14 +164,10 @@ import io.paperdb.Paper;
             return super.onOptionsItemSelected(item);
         }
         public void populateListView() {
-            //get the data and append to a list
             Cursor data = mDatabaseHelper.getData();
-            ArrayList<String> listData = new ArrayList<>();
-            while(data.moveToNext()) {
-                listData.add(data.getPosition() + 1 + data.getString(1) );
+            while (data.moveToNext()) {
+                goals.add(data.getString(1));
             }
-
-            ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-            listview_goals.setAdapter(adapter);
         }
+
     }

@@ -1,5 +1,6 @@
 package com.example.todo_app;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,8 +13,9 @@ public class Databasehelper extends SQLiteOpenHelper {
     public static final String DB_name="goals";
     public Databasehelper(Context context) {
 
-        super(context, dbname, null, 1);
+        super(context, dbname, null, 2);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -30,5 +32,12 @@ public class Databasehelper extends SQLiteOpenHelper {
         String query = "SELECT * FROM " + DB_name;
         Cursor data = db.rawQuery(query, null);
         return data;
+    }
+    public  void Add(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL2, name);
+       db.insert(DB_name, null, contentValues);
+
     }
     }

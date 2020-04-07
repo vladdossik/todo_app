@@ -26,7 +26,6 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
