@@ -43,6 +43,6 @@ public class Databasehelper extends SQLiteOpenHelper {
     public void delete(int position)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-       db.delete("goals","ID = "+position,null);
+       db.delete("goals","ID = 3",null);
     }
     }
