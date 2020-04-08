@@ -30,8 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:dividerHeight="1dp"
-        android:textColor="@android:color/white"></com.baoyz.swipemenulistview.SwipeMenuListView>
+        android:divider="#ffffff"
+       android:dividerHeight="0.5dp">
+     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

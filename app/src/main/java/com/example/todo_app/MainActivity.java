@@ -93,10 +93,11 @@ import io.paperdb.Paper;
                 public void onClick(View view) {
                     LayoutInflater li = LayoutInflater.from(context);
                     View vview = li.inflate(R.layout.add_goal, null);
-
                     AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(context);
                     mDialogBuilder.setView(vview);
                     final EditText userInput = (EditText) vview.findViewById(R.id.input_text);
+                    userInput.setTextColor(Color.WHITE);
+
                     mDialogBuilder
                             .setCancelable(false)
                             .setPositiveButton("OK",
@@ -113,7 +114,10 @@ import io.paperdb.Paper;
                                         }
                                     });
                     AlertDialog alertDialog = mDialogBuilder.create();
+                    alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getColor(R.color.colorAccent)));
                     alertDialog.show();
+                    alertDialog.getButton(alertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.white));
+                    alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));
                 }
             });
             listview_goals.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
@@ -126,8 +130,9 @@ import io.paperdb.Paper;
                             break;
                         case 1:
                             final char dm = (char) 34;
-                           String name= dm+ goals.get(position)+dm;
+                           String name= dm+goals.get(position)+dm;
                             mDatabaseHelper.delete(name);
+                            toastMessage("Выбранный элемент=="+ position);
                             populateListView();
                             break;
                     }
