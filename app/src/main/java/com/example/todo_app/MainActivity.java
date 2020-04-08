@@ -51,10 +51,11 @@ import io.paperdb.Paper;
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
-            toolbar.setTitle(getApplicationInfo().name);
+
             listview_goals = findViewById(R.id.list_view);
              adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
             listview_goals.setAdapter(adapter);
+            populateListView();
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
                 public void create(SwipeMenu menu) {
@@ -155,9 +156,12 @@ import io.paperdb.Paper;
         }
         public void populateListView() {
             Cursor data = mDatabaseHelper.getData();
-            goals.clear();
+            //goals.clear();
+            ArrayList<String> listData = new ArrayList<>();
             while(data.moveToNext()) {
-                goals.add(data.getString(1));
+                listData.add(data.getString(1));
             }
+             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+            listview_goals.setAdapter(adapter);
         }
     }
