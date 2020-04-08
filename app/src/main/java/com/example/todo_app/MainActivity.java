@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -29,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +43,7 @@ import io.paperdb.Paper;
 
         Databasehelper mDatabaseHelper;
         ArrayAdapter adapter;
-        ArrayList<String> goals = new ArrayList();
+        ArrayList<String> goals = new ArrayList<>();
         final Context context = this;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,7 @@ import io.paperdb.Paper;
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
-
             listview_goals = findViewById(R.id.list_view);
-             adapter = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, goals);
-            listview_goals.setAdapter(adapter);
             populateListView();
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
@@ -126,8 +125,9 @@ import io.paperdb.Paper;
                             startActivity(intent);
                             break;
                         case 1:
-
-                            mDatabaseHelper.delete(position);
+                            final char dm = (char) 34;
+                           String name= dm+ goals.get(position)+dm;
+                            mDatabaseHelper.delete(name);
                             populateListView();
                             break;
                     }
@@ -137,6 +137,7 @@ import io.paperdb.Paper;
                 }
             });
         }
+
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
             // Inflate the menu; this adds items to the action bar if it is present.
@@ -158,13 +159,14 @@ import io.paperdb.Paper;
         }
         public void populateListView() {
             Cursor data = mDatabaseHelper.getData();
-
-            ArrayList<String> listData = new ArrayList<>();
-            listData.clear();
+            goals.clear();
             while(data.moveToNext()) {
-                listData.add(data.getString(1));
+                goals.add(data.getString(1));
             }
-             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, goals);
             listview_goals.setAdapter(adapter);
+        }
+        private void toastMessage(String s){
+            Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         }
     }

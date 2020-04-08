@@ -2,6 +2,7 @@ package com.example.todo_app;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,39 +11,48 @@ import io.paperdb.DbStoragePlainFile;
 
 
 public class Databasehelper extends SQLiteOpenHelper {
-    private  static final String COL2 = "todo";
-    public static final String DB_name="goals";
+    private static final String COL2 = "todo";
+    public static final String DB_name = "goals";
+
     public Databasehelper(Context context) {
 
-        super(context, DB_name, null, 3);
+        super(context, DB_name, null, 9);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY , " +
                 COL2 + " TEXT)";
         db.execSQL(createTable);
     }
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-            db.execSQL("DROP TABLE IF EXISTS " + DB_name);
-            onCreate(db);
-        }
-    public Cursor getData(){
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + DB_name);
+        onCreate(db);
+    }
+
+    public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + DB_name;
         Cursor data = db.rawQuery(query, null);
         return data;
     }
-    public  void Add(String name) {
+
+    public void Add(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
-       db.insert(DB_name, null, contentValues);
+        db.insert(DB_name, null, contentValues);
     }
-    public void delete(int position)
-    {
+
+    public void delete(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-       db.delete("goals","ID = 3",null);
+        db.delete(DB_name, COL2 +" = " +name, null);
     }
+    public void updatedb()
+    { SQLiteDatabase db = this.getWritableDatabase();
+        db.setVersion(+1);
     }
+}
+
