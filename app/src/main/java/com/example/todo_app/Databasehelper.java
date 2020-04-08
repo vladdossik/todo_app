@@ -6,13 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import io.paperdb.DbStoragePlainFile;
+
 
 public class Databasehelper extends SQLiteOpenHelper {
     private  static final String COL2 = "todo";
     public static final String DB_name="goals";
     public Databasehelper(Context context) {
 
-        super(context, DB_name, null, 2);
+        super(context, DB_name, null, 3);
     }
 
     @Override
@@ -37,6 +39,10 @@ public class Databasehelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
        db.insert(DB_name, null, contentValues);
-
+    }
+    public void delete(int position)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+       db.delete("goals","ID = "+position,null);
     }
     }

@@ -72,7 +72,6 @@ import io.paperdb.Paper;
                     openItem.setIcon(R.drawable.ic_open);
                     // add to menu
                     menu.addMenuItem(openItem);
-
                     // create "delete" item
                     SwipeMenuItem deleteItem = new SwipeMenuItem(
                             getApplicationContext());
@@ -128,8 +127,11 @@ import io.paperdb.Paper;
                             break;
                         case 1:
 
+                            mDatabaseHelper.delete(position);
+                            populateListView();
                             break;
                     }
+
                     // false : close the menu; true : not close the menu
                     return false;
                 }
@@ -156,8 +158,9 @@ import io.paperdb.Paper;
         }
         public void populateListView() {
             Cursor data = mDatabaseHelper.getData();
-            //goals.clear();
+
             ArrayList<String> listData = new ArrayList<>();
+            listData.clear();
             while(data.moveToNext()) {
                 listData.add(data.getString(1));
             }
