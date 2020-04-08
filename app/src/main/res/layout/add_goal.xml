@@ -6,7 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:textColor="#ffffff"
-    android:background="@color/colorAccent"
+    android:background="@color/colorPrimary"
     android:padding="10dp" >
 
     <TextView
@@ -20,7 +20,7 @@
         android:id="@+id/input_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
-        <requestFocus />
+
     </EditText>
 
 </LinearLayout>
