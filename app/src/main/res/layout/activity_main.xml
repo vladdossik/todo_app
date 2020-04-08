@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" android:background="#">
+    tools:context=".MainActivity"
+
+    android:background="#0B0A0A">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,18 +17,21 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <com.baoyz.swipemenulistview.SwipeMenuListView
-        android:layout_marginTop="?attr/actionBarSize"
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.baoyz.swipemenulistview.SwipeMenuListView>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:dividerHeight="1dp"
+        android:textColor="@android:color/white"></com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
