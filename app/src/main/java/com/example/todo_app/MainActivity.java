@@ -59,18 +59,17 @@ import io.paperdb.Paper;
                 @Override
                 public void create(SwipeMenu menu) {
                     // create "open" item
-                    SwipeMenuItem openItem = new SwipeMenuItem(
+                    SwipeMenuItem editItem = new SwipeMenuItem(
                             getApplicationContext());
                     // set item background
-                    openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
+                    editItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
                            0xCE)));
                     // set item width
-                    openItem.setWidth(170);
-
+                    editItem.setWidth(170);
                     // set item title font color
-                    openItem.setIcon(R.drawable.ic_open);
+                    editItem.setIcon(R.drawable.ic_edit);
                     // add to menu
-                    menu.addMenuItem(openItem);
+                    menu.addMenuItem(editItem);
                     // create "delete" item
                     SwipeMenuItem deleteItem = new SwipeMenuItem(
                             getApplicationContext());
@@ -97,7 +96,6 @@ import io.paperdb.Paper;
                     mDialogBuilder.setView(vview);
                     final EditText userInput = (EditText) vview.findViewById(R.id.input_text);
                     userInput.setTextColor(Color.WHITE);
-
                     mDialogBuilder
                             .setCancelable(false)
                             .setPositiveButton("OK",
@@ -122,11 +120,38 @@ import io.paperdb.Paper;
             });
             listview_goals.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
                 @Override
-                public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
                     switch (index) {
                         case 0:
-                            Intent intent = new Intent(MainActivity.this, ListDataActivity.class);
-                            startActivity(intent);
+                            LayoutInflater li = LayoutInflater.from(context);
+                            View vview = li.inflate(R.layout.add_goal, null);
+                            AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(context);
+                            mDialogBuilder.setView(vview);
+                            final EditText userInput = (EditText) vview.findViewById(R.id.input_text);
+                            userInput.setTextColor(Color.WHITE);
+                            mDialogBuilder
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog,int id) {
+                                                    final char dm = (char) 34;
+                                                    String name= dm+goals.get(position)+dm;
+                                                    mDatabaseHelper.delete(name);
+                                                    mDatabaseHelper.Add(userInput.getText().toString());
+                                                    populateListView();
+                                                }
+                                            })
+                                    .setNegativeButton("Cancel",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+                            AlertDialog alertDialog = mDialogBuilder.create();
+                            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getColor(R.color.colorPrimary)));
+                            alertDialog.show();
+                            alertDialog.getButton(alertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.white));
+                            alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));
                             break;
                         case 1:
                             final char dm = (char) 34;
