@@ -26,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -45,6 +46,7 @@ import io.paperdb.Paper;
         ArrayAdapter adapter;
         ArrayList<String> goals = new ArrayList<>();
         final Context context = this;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
 
@@ -63,7 +65,7 @@ import io.paperdb.Paper;
                             getApplicationContext());
                     // set item background
                     editItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                           0xCE)));
+                            0xCE)));
                     // set item width
                     editItem.setWidth(170);
                     // set item title font color
@@ -85,7 +87,18 @@ import io.paperdb.Paper;
 
                 }
             };
-            listview_goals.setMenuCreator(creator)  ;
+            listview_goals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Intent i = new Intent(MainActivity.this, ListDataActivity.class);
+                    startActivity(i);
+                }
+            });
+
+            listview_goals.setMenuCreator(creator) ;
             FloatingActionButton fab = findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
