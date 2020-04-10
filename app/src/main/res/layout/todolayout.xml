@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+     android:background="#0B0A0A"
+    android:layout_height="match_parent">
+<EditText
+    android:id="@+id/newtodo"
+    android:background="@drawable/edittextstyle"
+    android:layout_width="match_parent"
+    android:hint="Что вам нужно сделать?"
+    android:ellipsize="start"
+    android:padding="5dp"
+    android:gravity="center"
+    android:layout_height="wrap_content">
+</EditText>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/todolist"/>
+</LinearLayout>

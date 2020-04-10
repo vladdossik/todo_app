@@ -93,7 +93,7 @@ import io.paperdb.Paper;
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     ForNewDb.DB_name=goals.get(position);
-                    Intent i = new Intent(MainActivity.this, ForNewDb.class);
+                    Intent i = new Intent(MainActivity.this, todohelper.class);
                     startActivity(i);
                 }
             });
