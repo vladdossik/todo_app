@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 public class ForNewDb extends SQLiteOpenHelper {
     private static  String COL2 = "todo";
-    public static  String DB_name="db_name";
+    public static  String DB_name="qwerty";
     public ForNewDb(Context context) {
         super(context, DB_name, null, 10);
     }

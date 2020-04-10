@@ -7,6 +7,7 @@
     android:layout_height="match_parent">
 <EditText
     android:id="@+id/newtodo"
+    android:layout_marginTop="4dp"
     android:background="@drawable/edittextstyle"
     android:layout_width="match_parent"
     android:hint="Что вам нужно сделать?"
@@ -18,6 +19,8 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:divider="#ffffff"
+        android:dividerHeight="0.5dp"
         android:id="@+id/todolist">
     </ListView>
 </LinearLayout>
