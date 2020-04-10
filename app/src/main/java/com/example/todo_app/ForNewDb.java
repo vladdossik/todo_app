@@ -6,18 +6,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 
 public class ForNewDb extends SQLiteOpenHelper {
-    private static final String COL2 = "todo";
-    public static final String DB_name = "goals";
-
+    private static  String COL2 = "todo";
+    public static  String DB_name="db_name";
     public ForNewDb(Context context) {
-
         super(context, DB_name, null, 9);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
+
         String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY , " +
                 COL2 + " TEXT)";
         db.execSQL(createTable);

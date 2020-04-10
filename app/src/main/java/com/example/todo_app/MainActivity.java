@@ -92,10 +92,8 @@ import io.paperdb.Paper;
 
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Intent i = new Intent(MainActivity.this, ListDataActivity.class);
-                    String name=goals.get(position);
-                    i.putExtra("name",name);
+                    ForNewDb.DB_name=goals.get(position);
+                    Intent i = new Intent(MainActivity.this, ForNewDb.class);
                     startActivity(i);
                 }
             });
