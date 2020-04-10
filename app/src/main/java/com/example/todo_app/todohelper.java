@@ -35,11 +35,11 @@ edittodo=(EditText) findViewById(R.id.newtodo);
                 android.R.layout.simple_list_item_1, todo);
         // Привяжем массив через адаптер к ListView
         mListView.setAdapter(adapter);
-        mListView.setOnKeyListener(new View.OnKeyListener() {
+        edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
                     if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                        todo.add(0, edittodo.getText().toString());
+                        mDatabaseHelper.Add( edittodo.getText().toString());
                         adapter.notifyDataSetChanged();
                         edittodo.setText("");
                         return true;
@@ -47,6 +47,7 @@ edittodo=(EditText) findViewById(R.id.newtodo);
                 return false;
             }
         });
+        populateListView();
     }
     public void populateListView() {
         //get the data and append to a list
