@@ -94,6 +94,8 @@ import io.paperdb.Paper;
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     Intent i = new Intent(MainActivity.this, ListDataActivity.class);
+                    String name=goals.get(position);
+                    i.putExtra("name",name);
                     startActivity(i);
                 }
             });
@@ -170,7 +172,6 @@ import io.paperdb.Paper;
                             final char dm = (char) 34;
                            String name= dm+goals.get(position)+dm;
                             mDatabaseHelper.delete(name);
-                            toastMessage("Выбранный элемент=="+ position);
                             populateListView();
                             break;
                     }

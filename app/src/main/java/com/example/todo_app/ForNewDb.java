@@ -7,14 +7,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import io.paperdb.DbStoragePlainFile;
-
-
-public class Databasehelper extends SQLiteOpenHelper {
+public class ForNewDb extends SQLiteOpenHelper {
     private static final String COL2 = "todo";
     public static final String DB_name = "goals";
 
-    public Databasehelper(Context context) {
+    public ForNewDb(Context context) {
 
         super(context, DB_name, null, 9);
     }
