@@ -12,7 +12,7 @@ public class ForNewDb extends SQLiteOpenHelper {
     private static  String COL2 = "todo";
     public static  String DB_name="db_name";
     public ForNewDb(Context context) {
-        super(context, DB_name, null, 9);
+        super(context, DB_name, null, 10);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {

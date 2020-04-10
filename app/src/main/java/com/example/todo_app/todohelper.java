@@ -25,6 +25,7 @@ public class todohelper extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolayout);
+
         mListView = (ListView) findViewById(R.id.todolist);
         mDatabaseHelper = new ForNewDb(this);
         final ArrayList<String> todo = new ArrayList<>();
@@ -33,14 +34,12 @@ edittodo=(EditText) findViewById(R.id.newtodo);
         final ArrayAdapter<String> adapter;
         adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, todo);
-        // Привяжем массив через адаптер к ListView
         mListView.setAdapter(adapter);
+        populateListView();
         edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
                     if (keyCode == KeyEvent.KEYCODE_ENTER|| keyCode==KeyEvent.ACTION_DOWN) {
                         mDatabaseHelper.Add( edittodo.getText().toString());
-                        adapter.notifyDataSetChanged();
                         edittodo.setText("");
                         return true;
                     }
@@ -54,10 +53,9 @@ edittodo=(EditText) findViewById(R.id.newtodo);
         Cursor data = mDatabaseHelper.getData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getPosition() + 1 + data.getString(1) );
+            listData.add( data.getString(1) );
         }
-
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, listData);
         mListView.setAdapter(adapter);
     }
 
