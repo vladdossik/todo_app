@@ -38,7 +38,7 @@ edittodo=(EditText) findViewById(R.id.newtodo);
         edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
-                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER|| keyCode==KeyEvent.ACTION_DOWN) {
                         mDatabaseHelper.Add( edittodo.getText().toString());
                         adapter.notifyDataSetChanged();
                         edittodo.setText("");
