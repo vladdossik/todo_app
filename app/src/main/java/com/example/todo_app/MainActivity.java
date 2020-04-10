@@ -167,11 +167,11 @@ import io.paperdb.Paper;
                             alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));
                             break;
                         case 1:
-                            final char dm = (char) 34;
-                           String name= dm+goals.get(position)+dm;
-                            mDatabaseHelper.delete(name);
-                            populateListView();
-                            break;
+                                    final char dm = (char) 34;
+                                   String name= dm+goals.get(position)+dm;
+                                    mDatabaseHelper.delete(name);
+                                    populateListView();
+                                    break;
                     }
 
                     // false : close the menu; true : not close the menu

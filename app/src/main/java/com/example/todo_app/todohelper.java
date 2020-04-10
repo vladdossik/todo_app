@@ -28,16 +28,16 @@ public class todohelper extends AppCompatActivity {
         mListView = (ListView) findViewById(R.id.todolist);
         mDatabaseHelper = new ForNewDb(this);
 edittodo=(EditText) findViewById(R.id.newtodo);
-        final ArrayAdapter<String> adapter;
-        edittodo.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN)
-                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                        mDatabaseHelper.Add( edittodo.getText().toString());
-                        edittodo.setText("");
-                        populateListView();
-                        return true;
-                    }
+                final ArrayAdapter<String> adapter;
+                edittodo.setOnKeyListener(  new View.OnKeyListener() {
+                    public boolean onKey(View v, int keyCode, KeyEvent event) {
+                        if (event.getAction() == KeyEvent.ACTION_DOWN)
+                            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                                mDatabaseHelper.Add( edittodo.getText().toString());
+                                edittodo.setText("");
+                                populateListView();
+                                return true;
+                            }
                 return false;
             }
         });
