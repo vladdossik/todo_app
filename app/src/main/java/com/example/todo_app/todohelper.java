@@ -25,7 +25,7 @@ public class todohelper extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolayout);
-        mListView = (ListView) findViewById(R.id.todolist);
+         mListView = (ListView) findViewById(R.id.todolist);
         mDatabaseHelper = new ForNewDb(this);
 edittodo=(EditText) findViewById(R.id.newtodo);
                 final ArrayAdapter<String> adapter;
@@ -52,7 +52,8 @@ edittodo=(EditText) findViewById(R.id.newtodo);
         while(data.moveToNext()) {
             listData.add( data.getString(1) );
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, listData);
+        ListAdapter adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
+
         mListView.setAdapter(adapter);
     }
 
