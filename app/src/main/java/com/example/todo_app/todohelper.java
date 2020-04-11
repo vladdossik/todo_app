@@ -34,6 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 public class todohelper extends AppCompatActivity {
     ForNewDb mDatabaseHelper;
+    Databasehelper db;
     private SwipeMenuListView listview_todo;
     EditText edittodo;
     ArrayAdapter adapter;
@@ -62,6 +63,12 @@ public class todohelper extends AppCompatActivity {
         SwipeMenuCreator creator = new SwipeMenuCreator() {
             @Override
             public void create(SwipeMenu menu) {
+                SwipeMenuItem doneItem = new SwipeMenuItem(
+                        getApplicationContext());
+                doneItem.setBackground(new ColorDrawable(getColor(R.color.green)));
+                doneItem.setWidth(170);
+                doneItem.setIcon(R.drawable.ic_done);
+                menu.addMenuItem(doneItem);
                 SwipeMenuItem editItem = new SwipeMenuItem(
                         getApplicationContext());
                 editItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
@@ -90,6 +97,8 @@ public class todohelper extends AppCompatActivity {
             public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
                 switch (index) {
                     case 0:
+                        break;
+                    case 1:
                         LayoutInflater li = LayoutInflater.from(context);
                         View vview = li.inflate(R.layout.add_goal, null);
                         AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(context);
@@ -120,11 +129,20 @@ public class todohelper extends AppCompatActivity {
                         alertDialog.getButton(alertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.white));
                         alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));
                         break;
-                    case 1:
+                    case 2:
                         final char dm = (char) 34;
                         String name= dm+listData.get(position)+dm;
                         mDatabaseHelper.delete(name);
                         populateListView();
+                        if(listData.size()==0)
+                        {
+                            toastMessage("Цель достигнута");
+                            String del= ForNewDb.DB_name;
+                            context.deleteDatabase(del);
+
+                            Intent intent=new Intent(todohelper.this,MainActivity.class);
+                            startActivity(intent);
+                        }
                         break;
                 }
                 return false;

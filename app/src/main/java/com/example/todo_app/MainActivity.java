@@ -183,9 +183,6 @@ import io.paperdb.Paper;
             return super.onOptionsItemSelected(item);
         }
         public void populateListView() {
-            if(goals.size()==0){
-                toastMessage("Целей пока нет");
-            }
             Cursor data = mDatabaseHelper.getData();
             goals.clear();
             while(data.moveToNext()) {
