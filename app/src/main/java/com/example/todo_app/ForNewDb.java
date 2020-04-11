@@ -41,7 +41,6 @@ public class ForNewDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
-        contentValues.put(COL3,0);
         db.insert(DB_name, null, contentValues);
     }
 

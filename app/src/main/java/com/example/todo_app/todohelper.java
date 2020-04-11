@@ -84,10 +84,7 @@ public class todohelper extends AppCompatActivity {
                toastMessage("Смахните влево");
             }
         });
-        listview_todo.setMenuCreator(creator) ;
-        FloatingActionButton fab = findViewById(R.id.fab);
-
-
+        listview_todo.setMenuCreator(creator);
         listview_todo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
@@ -139,10 +136,8 @@ public class todohelper extends AppCompatActivity {
         Cursor data = mDatabaseHelper.getData();
         listData.clear();
         while(data.moveToNext()) {
-            if(!data.getString(2).contains("1")) {
                 listData.add(data.getString(1));
             }
-        }
         adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, listData);
         listview_todo.setAdapter(adapter);
     }

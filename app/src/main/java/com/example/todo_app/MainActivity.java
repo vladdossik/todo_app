@@ -97,8 +97,15 @@ import io.paperdb.Paper;
                             .setPositiveButton("OK",
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
-                                           mDatabaseHelper.Add(userInput.getText().toString());
+                                            String name_db=userInput.getText().toString();
+
+
+                                                    name_db.replace(" ", "_");
+
+
+                                           mDatabaseHelper.Add(name_db);
                                             populateListView();
+                                            toastMessage("Цель создана");
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -133,7 +140,9 @@ import io.paperdb.Paper;
                                                     final char dm = (char) 34;
                                                     String name= dm+goals.get(position)+dm;
                                                     mDatabaseHelper.delete(name);
-                                                    mDatabaseHelper.Add(userInput.getText().toString());
+                                                    String name_db=userInput.getText().toString();
+                                                        name_db.replace(" ","_");
+                                                    mDatabaseHelper.Add(name_db);
                                                     populateListView();
                                                 }
                                             })
@@ -156,31 +165,27 @@ import io.paperdb.Paper;
                                     populateListView();
                                     break;
                     }
-
-                    // false : close the menu; true : not close the menu
                     return false;
                 }
             });
         }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            // Inflate the menu; this adds items to the action bar if it is present.
             getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
             int id = item.getItemId();
-            //noinspection SimplifiableIfStatement
             if (id == R.id.action_settings) {
                 return true;
             }
             return super.onOptionsItemSelected(item);
         }
         public void populateListView() {
+            if(goals.size()==0){
+                toastMessage("Целей пока нет");
+            }
             Cursor data = mDatabaseHelper.getData();
             goals.clear();
             while(data.moveToNext()) {
