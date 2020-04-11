@@ -10,15 +10,17 @@ import android.os.Bundle;
 
 public class ForNewDb extends SQLiteOpenHelper {
     private static  String COL2 = "todo";
+    private static String COL3="checked";
     public static  String DB_name="qwerty";
     public ForNewDb(Context context) {
-        super(context, DB_name, null, 10);
+        super(context, DB_name, null, 11);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
 
         String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY , " +
-                COL2 + " TEXT)";
+                COL2 + " TEXT," +
+                COL3 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -39,6 +41,7 @@ public class ForNewDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
+        contentValues.put(COL3,0);
         db.insert(DB_name, null, contentValues);
     }
 
@@ -46,6 +49,7 @@ public class ForNewDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_name, COL2 +" = " +name, null);
     }
+    //public void add()
 
 }
 

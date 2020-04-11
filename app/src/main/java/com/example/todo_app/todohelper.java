@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,6 +42,19 @@ edittodo=(EditText) findViewById(R.id.newtodo);
                 return false;
             }
         });
+                mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        SparseBooleanArray chosen = ((ListView) parent).getCheckedItemPositions();
+                        for (int i = 0; i < chosen.size(); i++) {
+                            // если пользователь выбрал пункт списка,
+                            // то выводим его в TextView.
+                            if (chosen.valueAt(i)) {
+                             //   selection.append(foods[chosen.keyAt(i)] + " ");
+                            }
+                        }
+                    }
+                });
         populateListView();
     }
     public void populateListView() {
