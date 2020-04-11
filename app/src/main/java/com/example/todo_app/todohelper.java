@@ -50,7 +50,8 @@ public class todohelper extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                      mDatabaseHelper.replace(listData.get(position));
-                    populateListView();
+                     toastMessage("Дело сделано. Так держать");
+                      populateListView();
             }
         });
     }
@@ -58,15 +59,18 @@ public class todohelper extends AppCompatActivity {
         //get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
         listData.clear();
-
         while(data.moveToNext()) {
-           // if(data.getString(2).equals("1"))
-           //     mListView.setItemChecked(data.getPosition(),true);
-            listData.add( data.getString(1)+" | "+data.getString(2) );
+            if(!data.getString(2).contains("1")) {
+                listData.add(data.getString(1));
+            }
         }
-         adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
+        //CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), listData);
+        //listview_todo.setAdapter(customAdapter);
+        adapter = new ArrayAdapter<>(this,R.layout.multiple_choice, listData);
         listview_todo.setAdapter(adapter);
     }
-
-
+    private void toastMessage(String s){
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
 }
+

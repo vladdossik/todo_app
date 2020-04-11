@@ -54,8 +54,9 @@ public class ForNewDb extends SQLiteOpenHelper {
     ContentValues contentValues = new ContentValues();
     final char dm=(char)34;
     String i=dm+name+dm;
-    contentValues.put(COL3, 1);
-    db.update(DB_name, contentValues, COL2+" = "+i,null);
+    String ch="1";
+    contentValues.put(COL3, ch);
+    db.update(DB_name, contentValues, "todo = "+i,null);
 
     }
 
