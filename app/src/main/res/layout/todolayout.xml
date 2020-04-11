@@ -16,12 +16,12 @@
     android:gravity="center"
     android:layout_height="wrap_content">
 </EditText>
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#ffffff"
         android:dividerHeight="0.5dp"
         android:id="@+id/todolist">
 
-    </ListView>
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
 </LinearLayout>
