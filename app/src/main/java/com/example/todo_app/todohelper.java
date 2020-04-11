@@ -21,19 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 public class todohelper extends AppCompatActivity {
     ForNewDb mDatabaseHelper;
-    private ListView mListView;
+    private ListView listview_todo;
     EditText edittodo;
-    ArrayList<String> listData ;
-
+    ArrayAdapter adapter;
+    ArrayList<String> listData=new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolayout);
-         mListView = (ListView) findViewById(R.id.todolist);
-        final ArrayList<String> listData = new ArrayList<>();
         mDatabaseHelper = new ForNewDb(this);
+        listview_todo = (ListView) findViewById(R.id.todolist);
+        populateListView();
             edittodo=(EditText) findViewById(R.id.newtodo);
-                final ArrayAdapter<String> adapter;
                 edittodo.setOnKeyListener(  new View.OnKeyListener() {
                     public boolean onKey(View v, int keyCode, KeyEvent event) {
                         if (event.getAction() == KeyEvent.ACTION_DOWN)
@@ -46,31 +45,27 @@ public class todohelper extends AppCompatActivity {
                 return false;
             }
         });
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listview_todo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                mDatabaseHelper.replace(listData.get(position));
+                     mDatabaseHelper.replace(listData.get(position));
                     populateListView();
-
-
             }
         });
-        populateListView();
     }
     public void populateListView() {
         //get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
-        listData = new ArrayList<>();
         listData.clear();
 
         while(data.moveToNext()) {
-            if(data.getString(2).equals("1"))
-                mListView.setItemChecked(data.getPosition(),true);
+           // if(data.getString(2).equals("1"))
+           //     mListView.setItemChecked(data.getPosition(),true);
             listData.add( data.getString(1)+" | "+data.getString(2) );
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, listData);
-        mListView.setAdapter(adapter);
+         adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
+        listview_todo.setAdapter(adapter);
     }
 
 
