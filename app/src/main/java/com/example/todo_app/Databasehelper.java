@@ -50,10 +50,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_name, COL2 +" = " +name, null);
     }
-    public void deleteall(String name){
-
-
-    }
 
 }
 

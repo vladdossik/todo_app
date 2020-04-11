@@ -34,7 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 public class todohelper extends AppCompatActivity {
     ForNewDb mDatabaseHelper;
-    Databasehelper db;
+    Databasehelper databasehelper;
     private SwipeMenuListView listview_todo;
     EditText edittodo;
     ArrayAdapter adapter;
@@ -139,7 +139,12 @@ public class todohelper extends AppCompatActivity {
                             toastMessage("Цель достигнута");
                             String del= ForNewDb.DB_name;
                             context.deleteDatabase(del);
-
+                            del=dm+ForNewDb.DB_name+dm;
+                            try{
+                            MainActivity.delete(del);
+                            }
+                            catch (Exception e) {
+                            }
                             Intent intent=new Intent(todohelper.this,MainActivity.class);
                             startActivity(intent);
                         }

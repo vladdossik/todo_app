@@ -41,7 +41,7 @@ import io.paperdb.Paper;
 
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
-        Databasehelper mDatabaseHelper;
+       static Databasehelper mDatabaseHelper;
         ArrayAdapter adapter;
         ArrayList<String> goals = new ArrayList<>();
         final Context context = this;
@@ -193,5 +193,8 @@ import io.paperdb.Paper;
         }
         private void toastMessage(String s){
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        }
+        public static void delete(String name){
+            mDatabaseHelper.delete(name);
         }
     }
