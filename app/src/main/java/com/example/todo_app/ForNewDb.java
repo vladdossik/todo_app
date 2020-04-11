@@ -52,8 +52,9 @@ public class ForNewDb extends SQLiteOpenHelper {
     public void replace(String name) {
     SQLiteDatabase db=this.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
-    contentValues.put(COL3, 1);
-    db.update(DB_name,contentValues, COL2+" = "+name,null);
+    String check="1";
+    contentValues.put(COL3, check);
+    db.update(DB_name, contentValues, COL2+" = "+name,null);
 
     }
 

@@ -49,12 +49,10 @@ public class todohelper extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                SparseBooleanArray sp=mListView.getCheckedItemPositions();
-                for(int i=0;i < listData.size();i++)
-                {
-                    if(sp.get(i))
-                        mDatabaseHelper.replace(listData.get(position));
-                }
+
+                mDatabaseHelper.replace(listData.get(position));
+                    populateListView();
+
 
             }
         });
@@ -65,17 +63,13 @@ public class todohelper extends AppCompatActivity {
         Cursor data = mDatabaseHelper.getData();
         listData = new ArrayList<>();
         listData.clear();
-        SparseBooleanArray sp=mListView.getCheckedItemPositions();
+
         while(data.moveToNext()) {
             if(data.getString(2).equals("1"))
-            {
-               mListView.setItemChecked(data.getPosition(),true);
-            }
+                mListView.setItemChecked(data.getPosition(),true);
             listData.add( data.getString(1)+" | "+data.getString(2) );
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
-
-
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, listData);
         mListView.setAdapter(adapter);
     }
 
