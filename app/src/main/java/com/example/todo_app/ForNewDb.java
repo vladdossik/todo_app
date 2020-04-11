@@ -41,6 +41,7 @@ public class ForNewDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
+        contentValues.put(COL3,0);
         db.insert(DB_name, null, contentValues);
     }
 
@@ -51,11 +52,10 @@ public class ForNewDb extends SQLiteOpenHelper {
     public void replace(String name) {
     SQLiteDatabase db=this.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
-    final char dm=(char)34;
-    String i=dm+name+dm;
+
     String ch="1";
     contentValues.put(COL3, ch);
-    db.update(DB_name, contentValues, "todo = "+i,null);
+    db.update(DB_name, contentValues, "todo = "+name,null);
 
     }
 

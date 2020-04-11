@@ -9,17 +9,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -29,12 +24,10 @@ import com.baoyz.swipemenulistview.SwipeMenu;
 import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 public class todohelper extends AppCompatActivity {
     ForNewDb mDatabaseHelper;
-    Databasehelper databasehelper;
     private SwipeMenuListView listview_todo;
     EditText edittodo;
     ArrayAdapter adapter;
@@ -47,7 +40,7 @@ public class todohelper extends AppCompatActivity {
         mDatabaseHelper = new ForNewDb(this);
         listview_todo = (SwipeMenuListView) findViewById(R.id.todolist);
         populateListView();
-            edittodo=(EditText) findViewById(R.id.newtodo);
+                edittodo=(EditText) findViewById(R.id.newtodo);
                 edittodo.setOnKeyListener(  new View.OnKeyListener() {
                     public boolean onKey(View v, int keyCode, KeyEvent event) {
                         if (event.getAction() == KeyEvent.ACTION_DOWN)
@@ -88,7 +81,11 @@ public class todohelper extends AppCompatActivity {
         listview_todo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               toastMessage("Смахните влево");
+               char dm = (char) 34;
+                String name= dm+listData.get(position)+dm;
+                mDatabaseHelper.replace(name);
+                listview_todo.setItemChecked(position,true);
+                populateListView();
             }
         });
         listview_todo.setMenuCreator(creator);
@@ -98,14 +95,12 @@ public class todohelper extends AppCompatActivity {
                 char dm = (char) 34;
                 switch (index) {
                     case 0:
-                        //todo добавление статистики
                           dm = (char) 34;
                         String name= dm+listData.get(position)+dm;
                         mDatabaseHelper.delete(name);
                         populateListView();
                         if(listData.size()==0)
                         {
-
                             toastMessage("Цель достигнута");
                             String del= ForNewDb.DB_name;
                             context.deleteDatabase(del);
@@ -176,13 +171,12 @@ public class todohelper extends AppCompatActivity {
         });
     }
     public void populateListView() {
-        //get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
         listData.clear();
         while(data.moveToNext()) {
                 listData.add(data.getString(1));
             }
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, listData);
+      adapter = new ArrayAdapter<>(this,R.layout.multiple_choice, listData);
         listview_todo.setAdapter(adapter);
     }
     private void toastMessage(String s){
