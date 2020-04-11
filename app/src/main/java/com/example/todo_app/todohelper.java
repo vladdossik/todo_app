@@ -95,8 +95,29 @@ public class todohelper extends AppCompatActivity {
         listview_todo.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
+                char dm = (char) 34;
                 switch (index) {
                     case 0:
+                        //todo добавление статистики
+                          dm = (char) 34;
+                        String name= dm+listData.get(position)+dm;
+                        mDatabaseHelper.delete(name);
+                        populateListView();
+                        if(listData.size()==0)
+                        {
+
+                            toastMessage("Цель достигнута");
+                            String del= ForNewDb.DB_name;
+                            context.deleteDatabase(del);
+                            del=dm+ForNewDb.DB_name+dm;
+                            try{
+                                MainActivity.delete(del);
+                            }
+                            catch (Exception e) {
+                            }
+                            Intent intent=new Intent(todohelper.this,MainActivity.class);
+                            startActivity(intent);
+                        }
                         break;
                     case 1:
                         LayoutInflater li = LayoutInflater.from(context);
@@ -130,8 +151,8 @@ public class todohelper extends AppCompatActivity {
                         alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));
                         break;
                     case 2:
-                        final char dm = (char) 34;
-                        String name= dm+listData.get(position)+dm;
+                          dm = (char) 34;
+                         name= dm+listData.get(position)+dm;
                         mDatabaseHelper.delete(name);
                         populateListView();
                         if(listData.size()==0)
