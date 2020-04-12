@@ -3,25 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-     android:background="#0B0A0A"
+    android:background="#0B0A0A"
     android:layout_height="match_parent">
-<EditText
-    android:id="@+id/newtodo"
-    android:layout_marginTop="4dp"
-    android:background="@drawable/edittextstyle"
-    android:layout_width="match_parent"
-    android:hint="Что вам нужно сделать?"
-    android:ellipsize="start"
-    android:padding="7dp"
-    android:gravity="center"
-    android:layout_height="wrap_content">
-</EditText>
-    <com.baoyz.swipemenulistview.SwipeMenuListView
+    <EditText
+        android:id="@+id/newtodo"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/edittextstyle"
+        android:layout_width="match_parent"
+        android:hint="Что вам нужно сделать?"
+        android:ellipsize="start"
+        android:padding="7dp"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+    </EditText>
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#ffffff"
+        android:choiceMode="multipleChoice"
         android:dividerHeight="0.5dp"
         android:id="@+id/todolist">
-
-    </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </ListView>
 </LinearLayout>
