@@ -16,12 +16,28 @@
         android:gravity="center"
         android:layout_height="wrap_content">
     </EditText>
-    <ListView
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/todolist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="#ffffff"
+        android:layout_height="320dp"
         android:choiceMode="multipleChoice"
+        android:divider="#ffffff"
+        android:dividerHeight="0.5dp">
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="      Выполненные:"
+        android:textColor="@color/white"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <ListView
+        android:id="@+id/tododone"
+        android:divider="#ffffff"
         android:dividerHeight="0.5dp"
-        android:id="@+id/todolist">
+        android:layout_width="match_parent"
+        android:layout_height="320dp">
+
     </ListView>
 </LinearLayout>

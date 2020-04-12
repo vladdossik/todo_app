@@ -49,13 +49,11 @@ public class ForNewDb extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_name, COL2 +" = " +name, null);
     }
-    public void replace(String name) {
+    public void replace(String name,String value) {
     SQLiteDatabase db=this.getWritableDatabase();
     ContentValues contentValues = new ContentValues();
-
-    String ch="1";
-    contentValues.put(COL3, ch);
-    db.update(DB_name, contentValues, "todo = "+name,null);
+    contentValues.put(COL3, value);
+    db.update(DB_name, contentValues, "todo = "+ name,null);
 
     }
 
