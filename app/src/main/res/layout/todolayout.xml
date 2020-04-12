@@ -16,7 +16,12 @@
         android:gravity="center"
         android:layout_height="wrap_content">
     </EditText>
-
+<TextView
+    android:layout_width="match_parent"
+    android:textColor="@color/white"
+    android:layout_height="wrap_content"
+    android:text="      Задачи:">
+</TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
@@ -27,7 +32,7 @@
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
         android:layout_width="match_parent"
-        android:text="      Выполненные:"
+        android:text="      Выполненные задачи:"
         android:textColor="@color/white"
         android:layout_height="wrap_content">
 

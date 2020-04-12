@@ -41,9 +41,11 @@ import io.paperdb.Paper;
 
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
+        ListView list;
        static Databasehelper mDatabaseHelper;
         ArrayAdapter adapter;
         ArrayList<String> goals = new ArrayList<>();
+        ArrayList<String> goalsdone = new ArrayList<>();
         final Context context = this;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,7 @@ import io.paperdb.Paper;
             setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
             listview_goals = findViewById(R.id.list_view);
+            list=findViewById(R.id.goaldone);
             populateListView();
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
@@ -185,10 +188,16 @@ import io.paperdb.Paper;
         public void populateListView() {
             Cursor data = mDatabaseHelper.getData();
             goals.clear();
+            goalsdone.clear();
+          //
             while(data.moveToNext()) {
+                //сделать проверку на выполненную цель
+
+                    //goalsdone.add(data.getString(1));
+
                 goals.add(data.getString(1));
             }
-             adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, goals);
+             adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
             listview_goals.setAdapter(adapter);
         }
         private void toastMessage(String s){

@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#0B0A0A">
-
+    android:background="#0B0A0A"
+    android:orientation="vertical">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:textColor="@android:color/white"
@@ -22,15 +21,31 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="      Цели:"
+    >
+</TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:layout_height="280dp"
         android:divider="#ffffff"
        android:dividerHeight="0.5dp">
      </com.baoyz.swipemenulistview.SwipeMenuListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="      Выполненные цели:">
+    </TextView>
+    <ListView
+        android:id="@+id/goaldone"
+        android:divider="#ffffff"
+        android:dividerHeight="0.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp">
+    </ListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -38,6 +53,7 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add"
-        android:tint="@android:color/white"/>
+        android:tint="@android:color/white">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

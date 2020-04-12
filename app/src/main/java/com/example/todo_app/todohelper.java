@@ -36,9 +36,10 @@ public class todohelper extends AppCompatActivity {
     private SwipeMenuListView mListView;
     private ListView list;
     EditText edittodo;
-    ArrayList<String> listData;
-    ArrayList<String> donelist;
+     ArrayList<String> listData;
+     ArrayList<String> donelist;
     final Context context = this;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
