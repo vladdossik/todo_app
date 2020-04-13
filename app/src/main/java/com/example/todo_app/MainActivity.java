@@ -43,6 +43,7 @@ import io.paperdb.Paper;
         SwipeMenuListView listview_goals;
         ListView list;
        static Databasehelper mDatabaseHelper;
+       ForNewDb forNewDb;
         ArrayAdapter adapter;
         ArrayList<String> goals = new ArrayList<>();
         ArrayList<String> goalsdone = new ArrayList<>();
@@ -189,16 +190,15 @@ import io.paperdb.Paper;
             Cursor data = mDatabaseHelper.getData();
             goals.clear();
             goalsdone.clear();
-          //
-            while(data.moveToNext()) {
-                //сделать проверку на выполненную цель
-
-                    //goalsdone.add(data.getString(1));
+            while (data.moveToNext()) {
 
                 goals.add(data.getString(1));
+
+                adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
+                listview_goals.setAdapter(adapter);
+                // adapter = new ArrayAdapter<>(this, R.layout.done_list, goalsdone);
+                // list.setAdapter(adapter);
             }
-             adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
-            listview_goals.setAdapter(adapter);
         }
         private void toastMessage(String s){
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();

@@ -32,14 +32,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 public class todohelper extends AppCompatActivity {
-    ForNewDb mDatabaseHelper;
+     ForNewDb mDatabaseHelper;
+     Databasehelper databasehelper;
     private SwipeMenuListView mListView;
     private ListView list;
     EditText edittodo;
      ArrayList<String> listData;
      ArrayList<String> donelist;
     final Context context = this;
-
+    public static int done=0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class todohelper extends AppCompatActivity {
         mDatabaseHelper = new ForNewDb(this);
         edittodo = (EditText) findViewById(R.id.newtodo);
         final ArrayAdapter<String> adapter;
+        done=0;
         edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
@@ -150,16 +152,22 @@ populateListView();
         });
     }
     public void populateListView() {
+        done=0;
         //get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
        listData = new ArrayList<>();
+        char dm=(char)34;
 donelist=new ArrayList<>();
+        done=0;
         while(data.moveToNext()) {
             if(!data.getString(2).contains("1")) {
                 listData.add(data.getString(1) );
+                done--;
             }
-            else
+            else {
                 donelist.add(data.getString(1));
+                done++;
+            }
         }
         ListAdapter adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
         mListView.setAdapter(adapter);
@@ -169,6 +177,9 @@ donelist=new ArrayList<>();
     private void toastMessage(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
+
+
+
 
 
 

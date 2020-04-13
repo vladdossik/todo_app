@@ -29,7 +29,12 @@ public class ForNewDb extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DB_name);
         onCreate(db);
     }
-
+    public Cursor get(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + name;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
     public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + DB_name;
@@ -50,13 +55,11 @@ public class ForNewDb extends SQLiteOpenHelper {
         db.delete(DB_name, COL2 +" = " +name, null);
     }
     public void replace(String name,String value) {
-    SQLiteDatabase db=this.getWritableDatabase();
-    ContentValues contentValues = new ContentValues();
-    contentValues.put(COL3, value);
-    db.update(DB_name, contentValues, "todo = "+ name,null);
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL3, value);
+        db.update(DB_name, contentValues, "todo = " + name, null);
 
     }
-
-
 }
 

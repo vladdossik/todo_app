@@ -7,22 +7,21 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import io.paperdb.DbStoragePlainFile;
-
 
 public class Databasehelper extends SQLiteOpenHelper {
     private static final String COL2 = "todo";
-    public static final String DB_name = "goals";
-
+    private static String COL3="checked";
+    public static String DB_name = "goals";
     public Databasehelper(Context context) {
 
-        super(context, DB_name, null, 9);
+        super(context, DB_name, null, 10);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + DB_name + " (ID INTEGER PRIMARY KEY , " +
-                COL2 + " TEXT)";
+                COL2 + " TEXT," +
+                COL3 + " TEXT)";
         db.execSQL(createTable);
     }
 
@@ -38,11 +37,18 @@ public class Databasehelper extends SQLiteOpenHelper {
         Cursor data = db.rawQuery(query, null);
         return data;
     }
+    public Cursor get(String name){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + name;
+        Cursor data = db.rawQuery(query, null);
+        return data;
+    }
 
     public void Add(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, name);
+        contentValues.put(COL3,0);
         db.insert(DB_name, null, contentValues);
     }
 
@@ -50,6 +56,12 @@ public class Databasehelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_name, COL2 +" = " +name, null);
     }
+    public  void replace(String name, String value) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL3, value);
+        db.update(DB_name, contentValues, "todo = " + name, null);
 
+    }
 }
 
