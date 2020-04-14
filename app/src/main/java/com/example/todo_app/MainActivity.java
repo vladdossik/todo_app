@@ -55,6 +55,7 @@ import io.paperdb.Paper;
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
+            forNewDb=new ForNewDb(this);
             listview_goals = findViewById(R.id.list_view);
             list=findViewById(R.id.goaldone);
             populateListView();
@@ -189,25 +190,13 @@ import io.paperdb.Paper;
         public void populateListView() {
             char dm=(char)34;
             Cursor data = mDatabaseHelper.getData();
+            Cursor d;
+            boolean check;
             goals.clear();
             goalsdone.clear();
-          /*  while (data.moveToNext()) {
-                ForNewDb.DB_name=data.getString(1);
-                if(todohelper.done>0 )
-                {
-                    mDatabaseHelper.replace(dm+data.getString(1)+dm,"1");
-                }
-                todohelper.done=0;
-            }
-            data = mDatabaseHelper.getData();*/
                 while (data.moveToNext()) {
-
-                    if(data.getString(2).contains("1")){
-                        goalsdone.add(data.getString(1));
-                    }
-
-                 else goals.add(data.getString(1));
-
+                    goalsdone.add(data.getString(1));
+                    goals.add(data.getString(1));
             }
                 adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
                 listview_goals.setAdapter(adapter);

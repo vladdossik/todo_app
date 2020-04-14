@@ -56,7 +56,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_name, COL2 +" = " +name, null);
     }
-    public  void replace(String name, String value) {
+    public void replace(String name, String value) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL3, value);

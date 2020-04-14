@@ -174,14 +174,6 @@ populateListView();
         mListView.setAdapter(adapter);
         adapter = new ArrayAdapter<>(this, R.layout.done_list, donelist);
         list.setAdapter(adapter);
-        try {
-            if (done > 0) {
-                databasehelper.replace(name, "1");
-            }
-        }
-        catch(Exception e){
-            toastMessage("ошибка");
-        }
     }
     private void toastMessage(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
