@@ -152,27 +152,36 @@ populateListView();
         });
     }
     public void populateListView() {
-        done=0;
+        String name = ForNewDb.DB_name;
+        done = 0;
         //get the data and append to a list
         Cursor data = mDatabaseHelper.getData();
-       listData = new ArrayList<>();
-        char dm=(char)34;
-donelist=new ArrayList<>();
-        done=0;
-        while(data.moveToNext()) {
-            if(!data.getString(2).contains("1")) {
-                listData.add(data.getString(1) );
+        listData = new ArrayList<>();
+        char dm = (char) 34;
+        donelist = new ArrayList<>();
+        done = 0;
+        while (data.moveToNext()) {
+            if (!data.getString(2).contains("1")) {
+                listData.add(data.getString(1));
                 done--;
-            }
-            else {
+            } else {
                 donelist.add(data.getString(1));
                 done++;
             }
         }
+
         ListAdapter adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, listData);
         mListView.setAdapter(adapter);
-         adapter = new ArrayAdapter<>(this,R.layout.done_list, donelist);
+        adapter = new ArrayAdapter<>(this, R.layout.done_list, donelist);
         list.setAdapter(adapter);
+        try {
+            if (done > 0) {
+                databasehelper.replace(name, "1");
+            }
+        }
+        catch(Exception e){
+            toastMessage("ошибка");
+        }
     }
     private void toastMessage(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();

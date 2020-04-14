@@ -29,12 +29,6 @@ public class ForNewDb extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DB_name);
         onCreate(db);
     }
-    public Cursor get(String name){
-        SQLiteDatabase db = this.getWritableDatabase();
-        String query = "SELECT * FROM " + name;
-        Cursor data = db.rawQuery(query, null);
-        return data;
-    }
     public Cursor getData() {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + DB_name;

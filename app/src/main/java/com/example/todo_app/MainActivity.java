@@ -187,23 +187,37 @@ import io.paperdb.Paper;
             return super.onOptionsItemSelected(item);
         }
         public void populateListView() {
+            char dm=(char)34;
             Cursor data = mDatabaseHelper.getData();
             goals.clear();
             goalsdone.clear();
-            while (data.moveToNext()) {
+          /*  while (data.moveToNext()) {
+                ForNewDb.DB_name=data.getString(1);
+                if(todohelper.done>0 )
+                {
+                    mDatabaseHelper.replace(dm+data.getString(1)+dm,"1");
+                }
+                todohelper.done=0;
+            }
+            data = mDatabaseHelper.getData();*/
+                while (data.moveToNext()) {
 
-                goals.add(data.getString(1));
+                    if(data.getString(2).contains("1")){
+                        goalsdone.add(data.getString(1));
+                    }
 
+                 else goals.add(data.getString(1));
+
+            }
                 adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
                 listview_goals.setAdapter(adapter);
-                // adapter = new ArrayAdapter<>(this, R.layout.done_list, goalsdone);
-                // list.setAdapter(adapter);
-            }
+                adapter = new ArrayAdapter<>(this, R.layout.done_list, goalsdone);
+                 list.setAdapter(adapter);
+
         }
         private void toastMessage(String s){
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         }
-        public static void delete(String name){
-            mDatabaseHelper.delete(name);
-        }
-    }
+
+}
+
