@@ -84,7 +84,6 @@ public class todohelper extends AppCompatActivity {
             }
         };
         mListView.setMenuCreator(creator);
-        FloatingActionButton fab = findViewById(R.id.fab);
         mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
@@ -111,7 +110,7 @@ public class todohelper extends AppCompatActivity {
                                             }
                                         })
                                 .setNegativeButton("Cancel",
-                                        new DialogInterface.OnClickListener() {
+                                            new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int id) {
                                                 dialog.cancel();
                                             }
