@@ -28,6 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import io.paperdb.Paper;
 
@@ -53,12 +55,13 @@ import io.paperdb.Paper;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
             Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
+          setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
             listview_goals = findViewById(R.id.list_view);
             list=findViewById(R.id.goaldone);
             populateListView();
+
             SwipeMenuCreator creator = new SwipeMenuCreator() {
                 @Override
                 public void create(SwipeMenu menu) {
@@ -183,6 +186,10 @@ import io.paperdb.Paper;
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == R.id.action_settings) {
+                int red=new Random().nextInt(255);
+                int green= new Random().nextInt(255);
+                int blue= new Random().nextInt(255);
+                ThemeColors.setNewThemeColor(MainActivity.this, red, green, blue);
                 return true;
             }
             return super.onOptionsItemSelected(item);
