@@ -39,13 +39,13 @@
         android:layout_height="wrap_content"
         android:text="      Выполненные цели:">
     </TextView>
-    <ListView
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/goaldone"
         android:divider="#ffffff"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="230dp">
-    </ListView>
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"

@@ -43,7 +43,7 @@ import io.paperdb.Paper;
 
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
-        ListView list;
+        SwipeMenuListView list;
        static Databasehelper mDatabaseHelper;
        ForNewDb forNewDb;
         ArrayAdapter adapter;
@@ -81,6 +81,20 @@ import io.paperdb.Paper;
                     menu.addMenuItem(deleteItem);
                 }
             };
+            listview_goals.setMenuCreator(creator) ;
+            SwipeMenuCreator creator1 = new SwipeMenuCreator() {
+                @Override
+                public void create(SwipeMenu menu) {
+                    SwipeMenuItem deleteItem = new SwipeMenuItem(
+                            getApplicationContext());
+                    deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                            0x3F, 0x25)));
+                    deleteItem.setWidth(170);
+                    deleteItem.setIcon(R.drawable.ic_delete);
+                    menu.addMenuItem(deleteItem);
+                }
+            };
+            list.setMenuCreator(creator1);
             listview_goals.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -89,7 +103,6 @@ import io.paperdb.Paper;
                     startActivity(i);
                 }
             });
-            listview_goals.setMenuCreator(creator) ;
             FloatingActionButton fab = findViewById(R.id.fab);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
