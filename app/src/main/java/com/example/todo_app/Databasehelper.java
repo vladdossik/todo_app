@@ -14,7 +14,7 @@ public class Databasehelper extends SQLiteOpenHelper {
     public static String DB_name = "goals";
     public Databasehelper(Context context) {
 
-        super(context, DB_name, null, 10);
+        super(context, DB_name, null, 11);
     }
 
     @Override
