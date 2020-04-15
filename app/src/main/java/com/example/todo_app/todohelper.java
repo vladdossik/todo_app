@@ -1,10 +1,12 @@
 package com.example.todo_app;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -29,19 +31,19 @@ import com.baoyz.swipemenulistview.SwipeMenuCreator;
 import com.baoyz.swipemenulistview.SwipeMenuItem;
 import com.baoyz.swipemenulistview.SwipeMenuListView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
+
+import static com.example.todo_app.Databasehelper.DB_name;
+
 public class todohelper extends AppCompatActivity {
      ForNewDb mDatabaseHelper;
-     Databasehelper databasehelper;
     private SwipeMenuListView mListView;
     private ListView list;
     EditText edittodo;
      ArrayList<String> listData;
      ArrayList<String> donelist;
+     public static int value;
     final Context context = this;
-    public static int done=0;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,6 @@ public class todohelper extends AppCompatActivity {
         mDatabaseHelper = new ForNewDb(this);
         edittodo = (EditText) findViewById(R.id.newtodo);
         final ArrayAdapter<String> adapter;
-        done=0;
         edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
@@ -151,21 +152,16 @@ populateListView();
         });
     }
     public void populateListView() {
-        String name = ForNewDb.DB_name;
-        done = 0;
-        //get the data and append to a list
+        value=0;
         Cursor data = mDatabaseHelper.getData();
         listData = new ArrayList<>();
-        char dm = (char) 34;
         donelist = new ArrayList<>();
-        done = 0;
         while (data.moveToNext()) {
             if (!data.getString(2).contains("1")) {
+
                 listData.add(data.getString(1));
-                done--;
             } else {
                 donelist.add(data.getString(1));
-                done++;
             }
         }
 
@@ -173,14 +169,20 @@ populateListView();
         mListView.setAdapter(adapter);
         adapter = new ArrayAdapter<>(this, R.layout.done_list, donelist);
         list.setAdapter(adapter);
+        if(listData.size()==0&&donelist.size()>listData.size()){
+           String name=ForNewDb.DB_name;
+         MainActivity.rep(name);
+
+
+        }
     }
     private void toastMessage(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
-
-
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+       Intent intent=new Intent(todohelper.this,MainActivity.class);
+       startActivity(intent);
+    }
 }

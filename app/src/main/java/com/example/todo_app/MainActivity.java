@@ -184,6 +184,7 @@ import io.paperdb.Paper;
                     return false;
                 }
             });
+
         }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,13 +206,14 @@ import io.paperdb.Paper;
         public void populateListView() {
             char dm=(char)34;
             Cursor data = mDatabaseHelper.getData();
-            Cursor d;
-            boolean check;
             goals.clear();
             goalsdone.clear();
                 while (data.moveToNext()) {
-                    goalsdone.add(data.getString(1));
+                if(!data.getString(2).contains("1")){
                     goals.add(data.getString(1));
+                }
+                   else goalsdone.add(data.getString(1));
+
             }
                 adapter = new ArrayAdapter<>(this, R.layout.multiple_choice, goals);
                 listview_goals.setAdapter(adapter);
@@ -222,6 +224,9 @@ import io.paperdb.Paper;
         private void toastMessage(String s){
             Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         }
-
+        public static void rep(String name){
+             char dm = (char) 34;
+            mDatabaseHelper.replace(dm+name+dm,"1");}
 }
+
 
