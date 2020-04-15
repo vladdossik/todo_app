@@ -197,7 +197,20 @@ import io.paperdb.Paper;
                     return false;
                 }
             });
-
+list.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+    @Override
+    public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+        switch (index) {
+            case 0:
+                final char dm = (char) 34;
+                String name = dm + goalsdone.get(position) + dm;
+                mDatabaseHelper.delete(name);
+                populateListView();
+                break;
+        }
+        return false;
+    }
+});
         }
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
