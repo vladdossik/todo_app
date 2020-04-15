@@ -4,7 +4,6 @@
     android:layout_height="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-
     android:background="@color/colorPrimary"
     android:checkMarkTint="@color/white"
     android:checkMark="?android:attr/listChoiceIndicatorMultiple"

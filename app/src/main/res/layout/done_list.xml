@@ -4,6 +4,7 @@
     android:layout_height="?android:attr/listPreferredItemHeightSmall"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
+    android:background="@color/colorPrimary"
     android:checkMark="@drawable/ic_done"
     android:checkMarkTint="@color/white"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
