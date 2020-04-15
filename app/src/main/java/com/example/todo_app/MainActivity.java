@@ -106,14 +106,15 @@ import io.paperdb.Paper;
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog,int id) {
                                             String name_db=userInput.getText().toString();
+                                            if(name_db.equals("")||name_db.contains(" ")||name_db.contains("1")||name_db.contains("2")||name_db.contains("3")||name_db.contains("4")||name_db.contains("5")||name_db.contains("6")||name_db.contains("7")||name_db.contains("8")||name_db.contains("9")||name_db.contains("0"))
+                                            {
+                                                toastMessage("Название цели не может содержать цифры и иные символы");
+                                                dialog.cancel();
 
-
-                                                    name_db.replace(" ", "_");
-
-
-                                           mDatabaseHelper.Add(name_db);
+                                            }
+                                            else{ mDatabaseHelper.Add(name_db);
                                             populateListView();
-                                            toastMessage("Цель создана");
+                                            toastMessage("Цель создана");}
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -149,8 +150,15 @@ import io.paperdb.Paper;
                                                     String name= dm+goals.get(position)+dm;
                                                     mDatabaseHelper.delete(name);
                                                     String name_db=userInput.getText().toString();
-                                                        name_db.replace(" ","_");
-                                                    mDatabaseHelper.Add(name_db);
+                                                    if(name_db.equals("")||name_db.contains(" ")||name_db.contains("1")||name_db.contains("2")||name_db.contains("3")||name_db.contains("4")||name_db.contains("5")||name_db.contains("6")||name_db.contains("7")||name_db.contains("8")||name_db.contains("9")||name_db.contains("0"))
+                                                    {
+                                                        toastMessage("Название цели не может содержать цифры и иные символы");
+                                                        dialog.cancel();
+
+                                                    }
+                                                    else{ mDatabaseHelper.Add(name_db);
+                                                        populateListView();
+                                                        toastMessage("Цель создана");}
                                                     populateListView();
                                                 }
                                             })
