@@ -20,9 +20,11 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#303030</item>
         <item name="listviewcolor">#303030</item>
+        <item name="checkmarktintcolor">#808080</item>
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#808080</item>
         <item name="dividercolor">#ffffff</item>
+
     </style>
 
 

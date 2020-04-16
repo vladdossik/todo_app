@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:background="?attr/backgroundcolor"
     android:orientation="vertical">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textColor="?attr/textcolor"
+
     android:text="      Цели:"
     >
 </TextView>
@@ -18,17 +17,20 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="280dp"
+        android:textColor="?attr/textcolor"
        android:dividerHeight="0.5dp">
      </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="      Выполненные цели:">
+        android:text="      Выполненные цели:"
+        android:textColor="?attr/textcolor">
     </TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/goaldone"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
+        android:textColor="?attr/textcolor"
         android:layout_height="230dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -6,7 +6,7 @@
         <attr name="textcolor" format="color"> </attr>
         <attr name="tintcolor" format="color"> </attr>
         <attr name="dividercolor" format="color"> </attr>
-
+        <attr name="checkmarktintcolor" format="color" />
 
     </declare-styleable>
 </resources>
