@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="?attr/backgroundcolor"
     android:orientation="vertical">
 <TextView
     android:layout_width="match_parent"
@@ -17,7 +18,6 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:divider="#ffffff"
        android:dividerHeight="0.5dp">
      </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
@@ -27,7 +27,6 @@
     </TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/goaldone"
-        android:divider="#ffffff"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="230dp">

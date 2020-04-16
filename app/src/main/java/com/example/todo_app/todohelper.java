@@ -118,7 +118,7 @@ public class todohelper extends AppCompatActivity {
                                             }
                                         });
                         AlertDialog alertDialog = mDialogBuilder.create();
-                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getColor(R.color.colorPrimary)));
+                        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(getColor(R.color.grey)));
                         alertDialog.show();
                         alertDialog.getButton(alertDialog.BUTTON_POSITIVE).setTextColor(getColor(R.color.white));
                         alertDialog.getButton(alertDialog.BUTTON_NEGATIVE).setTextColor(getColor(R.color.white));

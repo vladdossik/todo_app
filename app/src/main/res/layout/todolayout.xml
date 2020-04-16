@@ -26,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:choiceMode="multipleChoice"
-        android:divider="#ffffff"
         android:dividerHeight="0.5dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
@@ -36,7 +35,6 @@
     </TextView>
     <ListView
         android:id="@+id/tododone"
-        android:divider="#ffffff"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="320dp">
