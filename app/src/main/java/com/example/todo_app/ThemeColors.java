@@ -6,15 +6,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
-import androidx.annotation.ColorInt;
-public class ThemeColors {
+import android.util.Log;
 
+import androidx.annotation.ColorInt;
+
+
+class ThemeColors {
     private static final String NAME = "ThemeColors", KEY = "color";
 
     @ColorInt
-    public int color;
+    private int color;
 
-    public ThemeColors(Context context) {
+    ThemeColors(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         String stringColor = sharedPreferences.getString(KEY, "004bff");
         color = Color.parseColor("#" + stringColor);
@@ -23,7 +26,7 @@ public class ThemeColors {
         context.setTheme(context.getResources().getIdentifier("T_" + stringColor, "style", context.getPackageName()));
     }
 
-    public static void setNewThemeColor(Activity activity, int red, int green, int blue) {
+    static void setNewThemeColor(Activity activity, int red, int green, int blue) {
         int colorStep = 15;
         red = Math.round(red / colorStep) * colorStep;
         green = Math.round(green / colorStep) * colorStep;
@@ -34,12 +37,8 @@ public class ThemeColors {
         editor.putString(KEY, stringColor);
         editor.apply();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) activity.recreate();
-        else {
-            Intent i = activity.getPackageManager().getLaunchIntentForPackage(activity.getPackageName());
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            activity.startActivity(i);
-        }
+
+        activity.recreate();
     }
 
     private boolean isLightActionBar() {// Checking if title text color will be black

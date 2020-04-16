@@ -53,9 +53,8 @@ import io.paperdb.Paper;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            new ThemeColors(this);
             setContentView(R.layout.activity_main);
-          //  Toolbar toolbar = findViewById(R.id.toolbar);
+        //  Toolbar toolbar = findViewById(R.id.toolbar);
 //          setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
@@ -222,10 +221,7 @@ list.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() 
         public boolean onOptionsItemSelected(MenuItem item) {
             int id = item.getItemId();
             if (id == R.id.action_settings) {
-                int red=new Random().nextInt(255);
-                int green= new Random().nextInt(255);
-                int blue= new Random().nextInt(255);
-                ThemeColors.setNewThemeColor(MainActivity.this, red, green, blue);
+
                 return true;
             }
             return super.onOptionsItemSelected(item);

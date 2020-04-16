@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#0B0A0A"
     android:layout_height="match_parent">
     <EditText
         android:id="@+id/newtodo"
@@ -18,7 +17,7 @@
     </EditText>
 <TextView
     android:layout_width="match_parent"
-    android:textColor="@color/white"
+
     android:layout_height="wrap_content"
     android:text="      Задачи:">
 </TextView>
@@ -33,9 +32,7 @@
     <TextView
         android:layout_width="match_parent"
         android:text="      Выполненные задачи:"
-        android:textColor="@color/white"
         android:layout_height="wrap_content">
-
     </TextView>
     <ListView
         android:id="@+id/tododone"
