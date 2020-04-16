@@ -8,17 +8,19 @@
         android:label="Urakdo"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
             android:name=".MainActivity"
-            android:label="Urakdo">
+            android:label="Urakdo"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.todo_app.todohelper">
+        <activity android:name="com.example.todo_app.todohelper"
+            android:theme="@style/AppTheme">
         </activity>
 
     </application>

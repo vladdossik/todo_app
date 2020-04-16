@@ -43,11 +43,18 @@ public class todohelper extends AppCompatActivity {
      ArrayList<String> listData;
      ArrayList<String> donelist;
      public static int value;
+     public static  int theme;
     final Context context = this;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         new ThemeColors(this);
+        if(theme==1){
+            setTheme(R.style.darktheme);
+        }
+        else{
+            setTheme(R.style.AppTheme);
+        }
         setContentView(R.layout.todolayout);
         mListView = (SwipeMenuListView) findViewById(R.id.todolist);
         list = (ListView) findViewById(R.id.tododone);

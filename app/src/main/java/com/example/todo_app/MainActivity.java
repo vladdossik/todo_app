@@ -30,9 +30,11 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -48,20 +50,43 @@ import io.paperdb.Paper;
        static Databasehelper mDatabaseHelper;
        ForNewDb forNewDb;
         ArrayAdapter adapter;
+        private Switch mywitch;
         ArrayList<String> goals = new ArrayList<>();
         ArrayList<String> goalsdone = new ArrayList<>();
         final Context context = this;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+
         if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
         {
             setTheme(R.style.darktheme);
+            todohelper.theme=1;
         }
-        else setTheme(R.style.AppTheme);
+        else {
+            todohelper.theme=0;
+            setTheme(R.style.AppTheme);
+        }
+            setContentView(R.layout.activity_main);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
+            mywitch=findViewById(R.id.switchh);
+            if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+                mywitch.setChecked(true);
+            }
+            mywitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked){
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        recreate();
+                    }
+                    else{
+                        AppCompatDelegate.setDefaultNightMode((AppCompatDelegate.MODE_NIGHT_NO));
+                       recreate();
+                    }
+                }
+            });
             listview_goals = findViewById(R.id.list_view);
             list=findViewById(R.id.goaldone);
             populateListView();
