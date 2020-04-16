@@ -53,9 +53,10 @@ import io.paperdb.Paper;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            new ThemeColors(this);
             setContentView(R.layout.activity_main);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-          setSupportActionBar(toolbar);
+          //  Toolbar toolbar = findViewById(R.id.toolbar);
+//          setSupportActionBar(toolbar);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
             listview_goals = findViewById(R.id.list_view);

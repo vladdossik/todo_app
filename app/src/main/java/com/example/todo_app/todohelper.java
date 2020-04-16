@@ -47,6 +47,7 @@ public class todohelper extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new ThemeColors(this);
         setContentView(R.layout.todolayout);
         mListView = (SwipeMenuListView) findViewById(R.id.todolist);
         list = (ListView) findViewById(R.id.tododone);
