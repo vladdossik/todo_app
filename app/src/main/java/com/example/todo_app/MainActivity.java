@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
@@ -54,8 +55,11 @@ import io.paperdb.Paper;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-        //  Toolbar toolbar = findViewById(R.id.toolbar);
-//          setSupportActionBar(toolbar);
+        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+        {
+            setTheme(R.style.darktheme);
+        }
+        else setTheme(R.style.AppTheme);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
             listview_goals = findViewById(R.id.list_view);
@@ -211,20 +215,6 @@ list.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() 
         return false;
     }
 });
-        }
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            getMenuInflater().inflate(R.menu.menu_main, menu);
-            return true;
-        }
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            int id = item.getItemId();
-            if (id == R.id.action_settings) {
-
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
         }
         public void populateListView() {
             char dm=(char)34;

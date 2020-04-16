@@ -3,38 +3,68 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/listviewcolor"
+    android:padding="10dp"
     android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/backgroundcolor"
+        android:background="?attr/backgroundcolor"
+        android:padding="10dp">
+    <Switch
+        android:id="@+id/switchh"
+            android:layout_marginTop="8dp"
+        android:text="    Ночной режим"
+        android:textColor="?attr/textcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Switch>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?attr/backgroundcolor"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textColor="?attr/textcolor"
-
-    android:text="      Цели:"
-    >
+    android:text="    Цели:">
 </TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/list_view"
+        android:layout_marginTop="12dp"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="240dp"
         android:textColor="?attr/textcolor"
         android:divider="?attr/textcolor"
        android:dividerHeight="0.5dp">
      </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="?attr/backgroundcolor"
+        android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="      Выполненные цели:"
+        android:text="    Выполненные цели:"
         android:textColor="?attr/textcolor">
     </TextView>
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/goaldone"
+        android:layout_marginTop="12dp"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:textColor="#ffffff"
         android:divider="?attr/textcolor"
         android:layout_height="230dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </androidx.cardview.widget.CardView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
