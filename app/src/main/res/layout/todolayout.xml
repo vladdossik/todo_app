@@ -18,7 +18,7 @@
     </EditText>
 <TextView
     android:layout_width="match_parent"
-
+    android:textColor="?attr/textcolor"
     android:layout_height="wrap_content"
     android:text="      Задачи:">
 </TextView>
@@ -27,15 +27,18 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:choiceMode="multipleChoice"
+        android:divider="?attr/textcolor"
         android:dividerHeight="0.5dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
         android:layout_width="match_parent"
+        android:textColor="?attr/textcolor"
         android:text="      Выполненные задачи:"
         android:layout_height="wrap_content">
     </TextView>
     <ListView
         android:id="@+id/tododone"
+        android:divider="?attr/textcolor"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="320dp">

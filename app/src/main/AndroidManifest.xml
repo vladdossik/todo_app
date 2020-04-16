@@ -8,7 +8,7 @@
         android:label="Urakdo"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/darktheme">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
             android:label="Urakdo">

@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:textColor="?attr/textcolor"
+        android:divider="?attr/textcolor"
        android:dividerHeight="0.5dp">
      </com.baoyz.swipemenulistview.SwipeMenuListView>
     <TextView
@@ -31,6 +32,7 @@
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:textColor="#ffffff"
+        android:divider="?attr/textcolor"
         android:layout_height="230dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
