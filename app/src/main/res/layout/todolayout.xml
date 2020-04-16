@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/listviewcolor"
     android:layout_height="match_parent">
     <EditText
         android:id="@+id/newtodo"
@@ -16,12 +16,26 @@
         android:gravity="center"
         android:layout_height="wrap_content">
     </EditText>
+    <androidx.cardview.widget.CardView
+        android:layout_marginTop="8dp"
+        android:layout_margin="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/backgroundcolor">
+
 <TextView
     android:layout_width="match_parent"
     android:textColor="?attr/textcolor"
     android:layout_height="wrap_content"
     android:text="      Задачи:">
 </TextView>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_margin="3dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="?attr/backgroundcolor">
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/todolist"
         android:layout_width="match_parent"
@@ -30,18 +44,34 @@
         android:divider="?attr/textcolor"
         android:dividerHeight="0.5dp">
     </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="6dp"
+        android:layout_margin="3dp"
+        app:cardBackgroundColor="?attr/backgroundcolor"
+        android:layout_height="wrap_content">
     <TextView
         android:layout_width="match_parent"
         android:textColor="?attr/textcolor"
         android:text="      Выполненные задачи:"
         android:layout_height="wrap_content">
     </TextView>
-    <ListView
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginTop="3dp"
+        android:layout_margin="3dp"
+        app:cardBackgroundColor="?attr/backgroundcolor"
+        android:layout_height="wrap_content">
+    <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/tododone"
         android:divider="?attr/textcolor"
         android:dividerHeight="0.5dp"
         android:layout_width="match_parent"
         android:layout_height="320dp">
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
+    </androidx.cardview.widget.CardView>
 
-    </ListView>
 </LinearLayout>

@@ -38,7 +38,7 @@ import static com.example.todo_app.Databasehelper.DB_name;
 public class todohelper extends AppCompatActivity {
      ForNewDb mDatabaseHelper;
     private SwipeMenuListView mListView;
-    private ListView list;
+    private SwipeMenuListView list;
     EditText edittodo;
      ArrayList<String> listData;
      ArrayList<String> donelist;
@@ -57,7 +57,7 @@ public class todohelper extends AppCompatActivity {
         }
         setContentView(R.layout.todolayout);
         mListView = (SwipeMenuListView) findViewById(R.id.todolist);
-        list = (ListView) findViewById(R.id.tododone);
+        list = (SwipeMenuListView) findViewById(R.id.tododone);
         mDatabaseHelper = new ForNewDb(this);
         edittodo = (EditText) findViewById(R.id.newtodo);
         final ArrayAdapter<String> adapter;
@@ -93,6 +93,33 @@ public class todohelper extends AppCompatActivity {
             }
         };
         mListView.setMenuCreator(creator);
+        SwipeMenuCreator creator1 = new SwipeMenuCreator() {
+            @Override
+            public void create(SwipeMenu menu) {
+                SwipeMenuItem deleteItem = new SwipeMenuItem(
+                        getApplicationContext());
+                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
+                        0x3F, 0x25)));
+                deleteItem.setWidth(170);
+                deleteItem.setIcon(R.drawable.ic_delete);
+                menu.addMenuItem(deleteItem);
+            }
+        };
+        list.setMenuCreator(creator1);
+        list.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
+                switch (index) {
+                    case 0:
+                        final char dm = (char) 34;
+                        String name = dm + donelist.get(position) + dm;
+                        mDatabaseHelper.delete(name);
+                        populateListView();
+                        break;
+                }
+                return false;
+            }
+        });
         mListView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(final int position, SwipeMenu menu, int index) {
