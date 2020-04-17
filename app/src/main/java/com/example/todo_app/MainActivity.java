@@ -47,6 +47,7 @@ import io.paperdb.Paper;
     public class MainActivity extends AppCompatActivity {
         SwipeMenuListView listview_goals;
         SwipeMenuListView list;
+        SharedPref sharedPref;
        static Databasehelper mDatabaseHelper;
        ForNewDb forNewDb;
         ArrayAdapter adapter;
@@ -57,8 +58,8 @@ import io.paperdb.Paper;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-
-        if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+sharedPref=new SharedPref(this);
+        if(sharedPref.loadNightState())
         {
             setTheme(R.style.darktheme);
             todohelper.theme=1;
@@ -71,18 +72,18 @@ import io.paperdb.Paper;
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
                     mywitch=findViewById(R.id.switchh);
-            if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+            if(sharedPref.loadNightState()){
                 mywitch.setChecked(true);
             }
             mywitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked){
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                     sharedPref.setNigthModeState(true);
                         recreate();
                     }
                     else{
-                        AppCompatDelegate.setDefaultNightMode((AppCompatDelegate.MODE_NIGHT_NO));
+                     sharedPref.setNigthModeState(false);
                        recreate();
                     }
                 }
