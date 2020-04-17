@@ -64,7 +64,7 @@ public class todohelper extends AppCompatActivity {
         edittodo.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN)
-                    if (keyCode == KeyEvent.KEYCODE_ENTER) {
+                    if (keyCode == KeyEvent.KEYCODE_ENTER||keyCode==KeyEvent.KEYCODE_SHIFT_LEFT||keyCode==KeyEvent.KEYCODE_SHIFT_RIGHT) {
                         mDatabaseHelper.Add(edittodo.getText().toString());
                         edittodo.setText("");
                         populateListView();
