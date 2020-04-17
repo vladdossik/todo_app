@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.todo_app.todohelper"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme" >
         </activity>
 
     </application>

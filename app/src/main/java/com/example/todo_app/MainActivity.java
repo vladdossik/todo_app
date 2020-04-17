@@ -70,7 +70,7 @@ import io.paperdb.Paper;
             setContentView(R.layout.activity_main);
             mDatabaseHelper = new Databasehelper(this);
             forNewDb=new ForNewDb(this);
-            mywitch=findViewById(R.id.switchh);
+                    mywitch=findViewById(R.id.switchh);
             if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
                 mywitch.setChecked(true);
             }
