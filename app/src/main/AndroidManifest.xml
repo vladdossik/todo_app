@@ -10,14 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
-            android:name=".MainActivity"
-            android:label="todo app"
-            android:theme="@style/AppTheme">
+            android:name=".SplashScreen"
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme" >
         </activity>
         <activity android:name="com.example.todo_app.todohelper"
             android:theme="@style/AppTheme" >
