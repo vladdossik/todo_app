@@ -14,7 +14,7 @@
     <Switch
         android:id="@+id/switchh"
             android:layout_marginTop="8dp"
-        android:text="    Ночной режим"
+        android:text="    Night mode"
         android:textColor="?attr/textcolor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,7 +29,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textColor="?attr/textcolor"
-    android:text="    Цели:">
+    android:text="    Goals:">
 </TextView>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
@@ -57,7 +57,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="    Выполненные цели:"
+        android:text="    Accomplished goals:"
         android:textColor="?attr/textcolor">
     </TextView>
     </androidx.cardview.widget.CardView>
