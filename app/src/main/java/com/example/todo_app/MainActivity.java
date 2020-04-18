@@ -151,13 +151,13 @@ sharedPref=new SharedPref(this);
                                             String name_db=userInput.getText().toString();
                                             if(name_db.equals("")||name_db.contains(" ")||name_db.contains("1")||name_db.contains("2")||name_db.contains("3")||name_db.contains("4")||name_db.contains("5")||name_db.contains("6")||name_db.contains("7")||name_db.contains("8")||name_db.contains("9")||name_db.contains("0"))
                                             {
-                                                toastMessage("Название цели не может содержать цифры и иные символы");
+                                                toastMessage("Name of goal cannot contain numbers and symbols");
                                                 dialog.cancel();
 
                                             }
                                             else{ mDatabaseHelper.Add(name_db);
                                             populateListView();
-                                            toastMessage("Цель создана");}
+                                            toastMessage("Goal added");}
                                         }
                                     })
                             .setNegativeButton("Cancel",
@@ -195,13 +195,13 @@ sharedPref=new SharedPref(this);
                                                     String name_db=userInput.getText().toString();
                                                     if(name_db.equals("")||name_db.contains(" ")||name_db.contains("1")||name_db.contains("2")||name_db.contains("3")||name_db.contains("4")||name_db.contains("5")||name_db.contains("6")||name_db.contains("7")||name_db.contains("8")||name_db.contains("9")||name_db.contains("0"))
                                                     {
-                                                        toastMessage("Название цели не может содержать цифры и иные символы");
+                                                        toastMessage("Name of goal cannot contain numbers and symbols");
                                                         dialog.cancel();
 
                                                     }
                                                     else{ mDatabaseHelper.Add(name_db);
                                                         populateListView();
-                                                        toastMessage("Цель создана");}
+                                                        toastMessage("Goad added");}
                                                     populateListView();
                                                 }
                                             })
