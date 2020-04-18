@@ -17,22 +17,12 @@ public class SplashScreen extends AppCompatActivity {
         {
             public void run()
             {
-                try {
-                   
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 Intent intent=new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
 
             }
         };
         timerThread.start();
-    }
-    @Override
-    protected void onPause()
-    {
-        super.onPause();
-        finish();
     }
 }
