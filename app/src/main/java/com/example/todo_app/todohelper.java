@@ -48,7 +48,7 @@ public class todohelper extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new ThemeColors(this);
+
         if(theme==1){
             setTheme(R.style.darktheme);
         }

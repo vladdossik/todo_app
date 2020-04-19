@@ -58,36 +58,36 @@ import io.paperdb.Paper;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-sharedPref=new SharedPref(this);
-        if(sharedPref.loadNightState())
-        {
-            setTheme(R.style.darktheme);
-            todohelper.theme=1;
-        }
-        else {
-            todohelper.theme=0;
-            setTheme(R.style.AppTheme);
-        }
-            setContentView(R.layout.activity_main);
-            mDatabaseHelper = new Databasehelper(this);
-            forNewDb=new ForNewDb(this);
-                    mywitch=findViewById(R.id.switchh);
-            if(sharedPref.loadNightState()){
-                mywitch.setChecked(true);
+
+            if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES)
+            {
+                setTheme(R.style.darktheme);
+                todohelper.theme=1;
             }
-            mywitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked){
-                     sharedPref.setNigthModeState(true);
-                        recreate();
-                    }
-                    else{
-                     sharedPref.setNigthModeState(false);
-                       recreate();
-                    }
+            else {
+                todohelper.theme=0;
+                setTheme(R.style.AppTheme);
+            }
+                setContentView(R.layout.activity_main);
+                mDatabaseHelper = new Databasehelper(this);
+                forNewDb=new ForNewDb(this);
+                        mywitch=findViewById(R.id.switchh);
+                if(AppCompatDelegate.getDefaultNightMode()==AppCompatDelegate.MODE_NIGHT_YES){
+                    mywitch.setChecked(true);
                 }
-            });
+                mywitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                          restartApp();
+                        }
+                        else{
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                            restartApp();
+                        }
+                    }
+                });
             listview_goals = findViewById(R.id.list_view);
             list=findViewById(R.id.goaldone);
             populateListView();
@@ -266,6 +266,11 @@ list.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() 
         public static void rep(String name){
              char dm = (char) 34;
             mDatabaseHelper.replace(dm+name+dm,"1");}
+            public void restartApp(){
+            //Intent intent=new Intent(getApplicationContext(),MainActivity.class);
+           // startActivity(intent);
+                MainActivity.this.recreate();
+            }
 }
 
 
