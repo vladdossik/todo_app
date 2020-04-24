@@ -1,2 +1,2 @@
-rootProject.name='todo_app'
 include ':app'
+rootProject.name='todo_app'
