@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: io.paperdb:paperdb:2.6@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad61b9a5122b19a5681e86c562b0caa8/jetified-paperdb-2.6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/ad61b9a5122b19a5681e86c562b0caa8/jetified-paperdb-2.6/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6ae97d23de748242f263a07fcd381c7f/jetified-paperdb-2.6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/6ae97d23de748242f263a07fcd381c7f/jetified-paperdb-2.6/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.paperdb/paperdb/2.6/876432283b65fa8e6a0cfe66e9d6497726661c0c/paperdb-2.6-javadoc.jar!/" />
