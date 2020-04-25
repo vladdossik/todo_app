@@ -1,4 +1,4 @@
-![](https://github.com/actions/todo_app/tree/master/.github/workflows/main.yml/badge.svg)
+[![Actions Status](https://xxx.execute-api.us-west-2.amazonaws.com/production/badge/Bixxxer/todo_app)](https://xxx.execute-api.us-west-2.amazonaws.com/production/results/Bixxxer/todo_app)
 
 This application can be used to achieve goals. It is necessary to set a goal and set tasks that need to be done for the goal to be fulfilled.
 
