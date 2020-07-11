@@ -1,11 +1,9 @@
-package com.example.todo_app;
+package com.bixer.todoApp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import static java.lang.Thread.*;
 
 public class SplashScreen extends AppCompatActivity {
 

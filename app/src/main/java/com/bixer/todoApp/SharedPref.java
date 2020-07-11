@@ -1,4 +1,4 @@
-package com.example.todo_app;
+package com.bixer.todoApp;
 
 import android.content.Context;
 import android.content.SharedPreferences;

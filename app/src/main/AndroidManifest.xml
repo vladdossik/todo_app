@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.todo_app">
+    package="com.bixer.todoApp">
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_icon"
+        android:icon="@mipmap/icon"
         android:label="todo app"
-        android:roundIcon="@mipmap/ic_icon"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
-            android:name=".SplashScreen"
+            android:name="com.bixer.todoApp.SplashScreen"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity android:name="com.bixer.todoApp.MainActivity"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="com.example.todo_app.todohelper"
+        <activity android:name="com.bixer.todoApp.todohelper"
             android:theme="@style/AppTheme" >
         </activity>
 
